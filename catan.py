@@ -23,6 +23,18 @@ class GameParameters:
         8, 11, 6, 5
     ]
 
+    PORTS = [
+        ("3:1", -2, 0),
+        ("Wood", -1, 2),
+        ("Brick", 1, 2),
+        ("3:1", 2, 1),
+        ("Wheat", 2, -1),
+        ("Sheep", 1, -2),
+        ("Ore", -1, -2),
+        ("3:1", -2, -1),
+        ("3:1", -2, 1),
+    ]
+
     RESOURCE_COLORS = {
         "Wood": "#228B22",
         "Brick": "#964B00",
@@ -116,28 +128,23 @@ class CatanBoard(tk.Canvas):
         self.bandit_position = (q, r)
 
     def start_drag(self, event):
-        """Initiate dragging if the bandit is clicked."""
         if self.bandit_id is not None:
-            # Check if the click is on the bandit
-            x, y = self.coords(self.bandit_id)[:2]  # Get bandit's current coordinates
+            # check if the click is on the bandit
+            x, y = self.coords(self.bandit_id)[:2]  # get bandits current coordinates
             if abs(event.x - (x + 15)) < 15 and abs(event.y - (y + 15)) < 15:
                 self.bind("<B1-Motion>", self.drag_bandit)
                 self.bind("<ButtonRelease-1>", self.drop_bandit)
 
     def drag_bandit(self, event):
-        """Drag the bandit along with the mouse."""
         if self.bandit_id is not None:
             self.coords(self.bandit_id, event.x - 15, event.y - 15, event.x + 15, event.y + 15)
 
     def drop_bandit(self, event):
-        """Drop the bandit and snap to the nearest hex center."""
-        # Unbind dragging events
         self.unbind("<B1-Motion>")
         self.unbind("<ButtonRelease-1>")
         
-        # Snap to the nearest hex
         q, r = self.pixel_to_hex(event.x, event.y)
-        self.draw_bandit(q, r)  # Redraw bandit at the nearest hex
+        self.draw_bandit(q, r)
 
 
 class CatanGame:
