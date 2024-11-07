@@ -42,17 +42,29 @@ class GameParameters:
         "Sheep": "#ADFF2F",
         "Wheat": "#FFD700",
         "Ore": "#A9A9A9",
-        "Desert": "#D2B48C"
+        "Desert": "#D2B48C",
+        "Dice": "#FCFBF4"
     }
 
-@dataclass
-class DiceRoll:
+class Dicey:
     die1: int
     die2: int
 
-    def __init__(self, a, b):
-        self.die1 = a
-        self.die2 = b
+    def __init__(self):
+        self.die1 = 0
+        self.die2 = 0
+
+    def roll(self):
+        self.die1 = random.randint(1, 6)
+        self.die2 = random.randint(1, 6)
+
+    def cout(self):
+        print(f"({self.die1=}, {self.die2=})")
+
+@dataclass
+class DiceRoll:
+    die1: int = 0
+    die2: int = 0
 
     def cout(self) -> None:
         print(f"({self.die1=}, {self.die2=})")
@@ -79,8 +91,18 @@ class CatanBoard(tk.Canvas):
                     resource_index += 1
                     number_index += 1
                     self.draw_hexagon(x, y, resource_type, number_token)
-        self.draw_bandit(0, 0)
 
+        self.draw_bandit(0, 0)
+        self.display_dice(-3, -1, DiceRoll(1, 1))
+
+
+    def display_dice(self, q, r, dice_roll):
+        a, b = self.hex_to_pixel(q, r)
+        self.draw_hexagon(a, b, "Dice", None)
+        self.create_rectangle(a + 5, b - 0, a + 35, b + 30, fill="white", outline="black")
+        self.create_rectangle(a - 35, b - 0, a - 5, b + 30, fill="white", outline="black")
+        self.create_text(a + 20, b + 15, text=str(dice_roll.die1), fill="black", font=("Arial", 12, "bold"))
+        self.create_text(a - 20, b + 15, text=str(dice_roll.die2), fill="black", font=("Arial", 12, "bold"))
 
     def hex_to_pixel(self, q, r):
         x = GameParameters.TILE_SIZE * (3/2 * q)
@@ -170,10 +192,9 @@ class CatanGame:
         self.board.bind("<Button-1>", self.board.start_drag)
 
     def roll_dice(self):
-        a, b = random.randint(1, 6), random.randint(1, 6)
-        x = DiceRoll(a, b)
-        x.cout()
-        return x
+        dice_roll = DiceRoll(random.randint(1, 6), random.randint(1, 6))
+        dice_roll.cout()
+        self.board.display_dice(-3, -1, dice_roll)
 
     def place_bandit(self):
         q = random.randint(-GameParameters.BOARD_RADIUS, GameParameters.BOARD_RADIUS)
