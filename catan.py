@@ -179,7 +179,6 @@ class CatanGame:
 
     def roll_dice(self):
         dice_roll = DiceRoll(random.randint(1, 6), random.randint(1, 6))
-        dice_roll.cout()
         self.board.display_dice(-3, -1, dice_roll)
 
     def place_bandit(self):
