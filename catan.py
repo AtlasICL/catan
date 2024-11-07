@@ -46,20 +46,6 @@ class GameParameters:
         "Dice": "#FCFBF4"
     }
 
-class Dicey:
-    die1: int
-    die2: int
-
-    def __init__(self):
-        self.die1 = 0
-        self.die2 = 0
-
-    def roll(self):
-        self.die1 = random.randint(1, 6)
-        self.die2 = random.randint(1, 6)
-
-    def cout(self):
-        print(f"({self.die1=}, {self.die2=})")
 
 @dataclass
 class DiceRoll:
@@ -186,9 +172,9 @@ class CatanGame:
         self.root.title("Catan Clone")
         self.board = CatanBoard(root)      
         self.bandit_button = tk.Button(root, text="Random Bandit", command=self.place_bandit)
-        self.bandit_button.pack(pady=10)
+        self.bandit_button.pack(pady=2)
         self.dice_roll_button = tk.Button(root, text="Roll Dice", command=self.roll_dice)
-        self.dice_roll_button.pack(pady=10)
+        self.dice_roll_button.pack(pady=2)
         self.board.bind("<Button-1>", self.board.start_drag)
 
     def roll_dice(self):
