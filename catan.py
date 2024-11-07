@@ -1,6 +1,7 @@
 import tkinter as tk
 import math
 import random
+from dataclasses import dataclass
 
 class GameParameters:
     GAME_WIDTH: int = 800
@@ -44,7 +45,17 @@ class GameParameters:
         "Desert": "#D2B48C"
     }
 
+@dataclass
+class DiceRoll:
+    die1: int
+    die2: int
 
+    def __init__(self, a, b):
+        self.die1 = a
+        self.die2 = b
+
+    def cout(self) -> None:
+        print(f"({self.die1=}, {self.die2=})")
 
 class CatanBoard(tk.Canvas):
     def __init__(self, master):
@@ -154,7 +165,15 @@ class CatanGame:
         self.board = CatanBoard(root)      
         self.bandit_button = tk.Button(root, text="Random Bandit", command=self.place_bandit)
         self.bandit_button.pack(pady=10)
+        self.dice_roll_button = tk.Button(root, text="Roll Dice", command=self.roll_dice)
+        self.dice_roll_button.pack(pady=10)
         self.board.bind("<Button-1>", self.board.start_drag)
+
+    def roll_dice(self):
+        a, b = random.randint(1, 6), random.randint(1, 6)
+        x = DiceRoll(a, b)
+        x.cout()
+        return x
 
     def place_bandit(self):
         q = random.randint(-GameParameters.BOARD_RADIUS, GameParameters.BOARD_RADIUS)
