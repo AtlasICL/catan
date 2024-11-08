@@ -11,7 +11,7 @@ To build, simply run `main.py` in the `src` folder.
 
 ---
 
-### Interface 
+## Interface 
 
 The 'Roll Dice' button updates the value of the two 6 sided dice in the top left.  
 The small black circle is the robber. You can move the robber with your mouse, using drag and drop. Alternatively, the 'Random Bandit' button places the robber at a random location on the board.  
