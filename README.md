@@ -48,11 +48,11 @@ Here is an example of what the interface looks like by default:
     - [ ] trading cards
     - [ ] stealing cards
   - [ ] display inventories
-  - [ ] points scoring
-      - [ ] normal
-      - [ ] longest road
-      - [ ] strongest army
-      - [ ] win detection
+- [ ] points scoring
+  - [ ] normal
+  - [ ] longest road
+  - [ ] strongest army
+  - [ ] win detection
 
 ---
 
