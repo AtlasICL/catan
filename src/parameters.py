@@ -1,6 +1,6 @@
 class GameParameters:
-    GAME_WIDTH: int = 800
-    GAME_HEIGHT: int = 800
+    GAME_WIDTH: int = 700
+    GAME_HEIGHT: int = 700
 
     TILE_SIZE: int = 60
     BOARD_RADIUS: int = 2
