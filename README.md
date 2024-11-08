@@ -8,21 +8,56 @@ The clone is written entirely in python. The module tkinter was used for the int
 The project does not support online multiplayer, however I am planning to add local multiplayer support.
 
 ---
+## Build
+
+To build, simply run `main.py` in the `src` folder.
+
+---
 
 ## TODO
+
+### Board elements
+
+- [x] implement board
+    - [x] draw hexagons
+    - [x] specify resource types
+    - [x] specify hexagon values
+- [x] implement "robber"
+    - [x] drag and drop functionality
+    - [x] move to random position (useful?)
 - [x] add dice roll
-    - functionality
-    - display dice
+    - [x] functionality
+    - [x] display
 - [ ] add ports
     - add ports to locations
     - specify type of port
 - [ ] implement roads
-- [ ] implement villages
+- [ ] implement settlements
+    - [ ] villages
+    - [ ] upgrading to cities
+  
+### Player elements
+
+- [ ] implement inventory
+- [ ] add resources per turn
+- [ ] player profiles
+    - [ ] turn order
+    - [ ] trading cards
+    - [ ] stealing cards
+  - [ ] display inventories
+  - [ ] points scoring
+      - [ ] normal
+      - [ ] longest road
+      - [ ] strongest army
+      - [ ] win detection
 
 ---
+
 
 ## Acknowledgments
 - Based upon CATAN, a creation and design of Klaus Teuber and property of CATAN GmbH.
 - Copyright © 2017 (or later date) CATAN Studio, Inc. and CATAN GmbH. All rights reserved.
 - All trademarks contained herein are the property of CATAN GmbH. All rights reserved.
+
+This is a personal project. Commercial use is not allowed.
 
