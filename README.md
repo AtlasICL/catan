@@ -14,7 +14,7 @@ To build, simply run `main.py` in the `src` folder.
 ### Interface 
 
 Here is an example of what the interface looks like by default:
-!(Catan interface example)[images/interface_example_0]
+![Catan interface example](images/interface_example_0)
 
 ## TODO
 
