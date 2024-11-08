@@ -1,7 +1,4 @@
 import tkinter as tk
-import math
-import random
-from dataclasses import dataclass
 
 from game import CatanGame
 
