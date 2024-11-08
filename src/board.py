@@ -29,7 +29,7 @@ class CatanBoard(tk.Canvas):
                     self.draw_hexagon(x, y, resource_type, number_token)
 
         self.draw_bandit(0, 0)
-        self.display_dice(-3, -1, DiceRoll(1, 1))
+        self.display_dice(-3, -1, DiceRoll(2, 4))
 
 
     def display_dice(self, q, r, dice_roll):
