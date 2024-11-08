@@ -9,7 +9,7 @@ The project does not support online multiplayer, however I am planning to add lo
 
 ---
 
-### TODO
+## TODO
 - [x] add dice roll
     - functionality
     - display dice
@@ -18,3 +18,11 @@ The project does not support online multiplayer, however I am planning to add lo
     - specify type of port
 - [ ] implement roads
 - [ ] implement villages
+
+---
+
+## Acknowledgments
+- Based upon CATAN, a creation and design of Klaus Teuber and property of CATAN GmbH.
+- Copyright © 2017 (or later date) CATAN Studio, Inc. and CATAN GmbH. All rights reserved.
+- All trademarks contained herein are the property of CATAN GmbH. All rights reserved.
+
