@@ -1,6 +1,5 @@
 import tkinter as tk
 import random
-from dataclasses import dataclass
 
 from parameters import GameParameters
 from board import CatanBoard
