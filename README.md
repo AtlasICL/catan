@@ -13,7 +13,9 @@ To build, simply run `main.py` in the `src` folder.
 
 ### Interface 
 
-Here is an example of what the interface looks like by default:  
+The 'Roll Dice' button updates the value of the two 6 sided dice in the top left.  
+The small black circle is the robber. You can move the robber with your mouse, using drag and drop. Alternatively, the 'Random Bandit' button places the robber at a random location on the board.  
+Below is an example of the interface:  
 
 <img src="images/interface_example_0.png" alt="Catan interface example" width="600"/>
 
