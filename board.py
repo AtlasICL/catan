@@ -1,59 +1,9 @@
-import tkinter as tk
 import math
-import random
-from dataclasses import dataclass
+import tkinter as tk
 
-class GameParameters:
-    GAME_WIDTH: int = 800
-    GAME_HEIGHT: int = 800
+from parameters import GameParameters
+from dice import DiceRoll
 
-    TILE_SIZE: int = 60
-    BOARD_RADIUS: int = 2
-
-    FIXED_RESOURCES = [
-        "Wood", "Sheep", "Ore", "Brick", "Sheep",
-        "Brick", "Wheat", "Ore", "Wood", "Desert",
-        "Wood", "Wheat", "Sheep", "Wheat", "Ore",
-        "Wood", "Sheep", "Wheat", "Brick"
-    ]
-
-    NUMBER_TOKENS = [
-        9, 2, 10, 10, 4,
-        6, 12, 8, 3, None,
-        11, 9, 5, 4, 3,
-        8, 11, 6, 5
-    ]
-
-    PORTS = [
-        ("3:1", -2, 0),
-        ("Wood", -1, 2),
-        ("Brick", 1, 2),
-        ("3:1", 2, 1),
-        ("Wheat", 2, -1),
-        ("Sheep", 1, -2),
-        ("Ore", -1, -2),
-        ("3:1", -2, -1),
-        ("3:1", -2, 1),
-    ]
-
-    RESOURCE_COLORS = {
-        "Wood": "#228B22",
-        "Brick": "#964B00",
-        "Sheep": "#ADFF2F",
-        "Wheat": "#FFD700",
-        "Ore": "#A9A9A9",
-        "Desert": "#D2B48C",
-        "Dice": "#FCFBF4"
-    }
-
-
-@dataclass
-class DiceRoll:
-    die1: int = 0
-    die2: int = 0
-
-    def cout(self) -> None:
-        print(f"({self.die1=}, {self.die2=})")
 
 class CatanBoard(tk.Canvas):
     def __init__(self, master):
@@ -164,36 +114,3 @@ class CatanBoard(tk.Canvas):
         
         q, r = self.pixel_to_hex(event.x, event.y)
         self.draw_bandit(q, r)
-
-
-class CatanGame:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Catan Clone")
-        self.board = CatanBoard(root)      
-        self.bandit_button = tk.Button(root, text="Random Bandit", command=self.place_bandit)
-        self.bandit_button.pack(pady=2)
-        self.dice_roll_button = tk.Button(root, text="Roll Dice", command=self.roll_dice)
-        self.dice_roll_button.pack(pady=2)
-        self.board.bind("<Button-1>", self.board.start_drag)
-
-    def roll_dice(self):
-        dice_roll = DiceRoll(random.randint(1, 6), random.randint(1, 6))
-        self.board.display_dice(-3, -1, dice_roll)
-
-    def place_bandit(self):
-        q = random.randint(-GameParameters.BOARD_RADIUS, GameParameters.BOARD_RADIUS)
-        max_r = GameParameters.BOARD_RADIUS - abs(q)
-        r = random.randint(-max_r, max_r)
-        self.board.draw_bandit(q, r)
-
-
-
-        
-if __name__ == "__main__":
-    root = tk.Tk()
-    game = CatanGame(root)
-    root.mainloop()
-    
-
-
