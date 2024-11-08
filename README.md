@@ -4,9 +4,12 @@ Catan is a board game where players compete to "settle" an island. Players colle
 
 ---
 
+The clone is written entirely in python. The module tkinter was used for the interface and rendering.  
+The project does not support online multiplayer, however I am planning to add local multiplayer support.
+
 ### TODO
-- ### add ports
+- [ ] add ports
     - add ports to locations
     - specify type of port
-- ### add roads
-- ### add villages
+- [ ] implement roads
+- [ ] implement villages
