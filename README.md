@@ -32,8 +32,8 @@ Here is an example of what the interface looks like by default:
     - [x] functionality
     - [x] display
 - [ ] add ports
-    - add ports to locations
-    - specify type of port
+    - [ ] draw ports at specific locations
+    - [ ] display type of port
 - [ ] implement roads
 - [ ] implement settlements
     - [ ] villages
@@ -48,6 +48,7 @@ Here is an example of what the interface looks like by default:
     - [ ] trading cards
     - [ ] stealing cards
   - [ ] display inventories
+- [ ] port trading
 - [ ] points scoring
   - [ ] normal
   - [ ] longest road
