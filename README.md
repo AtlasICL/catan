@@ -2,10 +2,7 @@
 This personal project is a recreation in python of the board game Catan (formerly known as Settlers of Catan).  
 Catan is a board game where players compete to "settle" an island. Players collect various resources and use them to build roads and villages to earn points.
 
----
-
-The clone is written entirely in python. The module tkinter was used for the interface.  
-The project does not support online multiplayer, however I am planning to add local multiplayer support.
+This project is written in python. The module tkinter was used for the interface.  
 
 ---
 ## Build
@@ -13,6 +10,11 @@ The project does not support online multiplayer, however I am planning to add lo
 To build, simply run `main.py` in the `src` folder.
 
 ---
+
+### Interface 
+
+Here is an example of what the interface looks like by default:
+!(Catan interface example)[images/interface_example_0]
 
 ## TODO
 
