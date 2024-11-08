@@ -19,7 +19,7 @@ Below is an example of the interface:
 
 <img src="images/interface_example_0.png" alt="Catan interface example" width="600"/>
 
-## TODO
+# TODO
 
 ### Board elements
 
