@@ -31,6 +31,10 @@ class GameParameters:
         ("3:1", -2, 1),
     ]
 
+    NEIGHBOR_DELTAS = [
+        (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1), (1, -1)
+    ]
+
     RESOURCE_COLORS = {
         "Wood": "#228B22",
         "Brick": "#964B00",

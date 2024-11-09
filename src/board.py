@@ -157,9 +157,7 @@ class CatanBoard(tk.Canvas):
         nearest_point = None
         min_distance = float('inf')
         
-        neighbor_deltas = [
-            (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1), (1, -1)
-        ]
+        neighbor_deltas = GameParameters.NEIGHBOR_DELTAS
         
         for q in range(-GameParameters.BOARD_RADIUS, GameParameters.BOARD_RADIUS + 1):
             for r in range(-GameParameters.BOARD_RADIUS, GameParameters.BOARD_RADIUS + 1):
