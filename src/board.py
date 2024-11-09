@@ -1,6 +1,7 @@
 import math
 import tkinter as tk
 
+from village import Village
 from parameters import GameParameters
 from dice import DiceRoll
 
@@ -12,6 +13,10 @@ class CatanBoard(tk.Canvas):
         self.tiles = []
         self.bandit_id = None
         self.bandit_position = None
+        self.village_circle = None
+        self.placing_village = False
+        self.villages = []
+        self.village_circles = []
         self.create_board()
 
 
@@ -114,3 +119,67 @@ class CatanBoard(tk.Canvas):
         
         q, r = self.pixel_to_hex(event.x, event.y)
         self.draw_bandit(q, r)
+
+    def start_village_placement(self):
+        self.placing_village = True
+        self.bind("<Motion>", self.move_village_with_cursor)
+        self.bind("<Button-1>", self.place_village)
+
+    def move_village_with_cursor(self, event):
+        if self.placing_village:
+            if self.village_circle is None:
+                radius = 10
+                self.village_circle = self.create_oval(event.x - radius, event.y - radius, event.x + radius, event.y + radius, fill="blue", outline="black")
+            else:
+                radius = 10
+                self.coords(self.village_circle, event.x - radius, event.y - radius, event.x + radius, event.y + radius)
+
+    def place_village(self, event):
+        if self.placing_village:
+            nearest_x, nearest_y = self.get_nearest_intersection(event.x, event.y)
+
+            new_village = Village(nearest_x, nearest_y)
+            self.villages.append(new_village)
+
+            radius = 10
+            village_circle_id = self.create_oval(nearest_x - radius, nearest_y - radius, nearest_x + radius, nearest_y + radius, fill="blue", outline="black")
+            self.village_circles.append(village_circle_id)
+
+            if self.village_circle is not None:
+                self.delete(self.village_circle)
+                self.village_circle = None
+
+            self.unbind("<Motion>")
+            self.unbind("<Button-1>")
+            self.placing_village = False
+
+    def get_nearest_intersection(self, x, y):
+        nearest_point = None
+        min_distance = float('inf')
+        
+        neighbor_deltas = [
+            (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1), (1, -1)
+        ]
+        
+        for q in range(-GameParameters.BOARD_RADIUS, GameParameters.BOARD_RADIUS + 1):
+            for r in range(-GameParameters.BOARD_RADIUS, GameParameters.BOARD_RADIUS + 1):
+                if abs(q + r) <= GameParameters.BOARD_RADIUS:
+                    center_x, center_y = self.hex_to_pixel(q, r)
+                    for i in range(len(neighbor_deltas)):
+                        for j in range(i + 1, len(neighbor_deltas)):
+                            dq1, dr1 = neighbor_deltas[i]
+                            dq2, dr2 = neighbor_deltas[j]
+
+                            neighbor1_x, neighbor1_y = self.hex_to_pixel(q + dq1, r + dr1)
+                            neighbor2_x, neighbor2_y = self.hex_to_pixel(q + dq2, r + dr2)
+
+                            px = (center_x + neighbor1_x + neighbor2_x) / 3
+                            py = (center_y + neighbor1_y + neighbor2_y) / 3
+
+                            dist = math.sqrt((x - px) ** 2 + (y - py) ** 2)
+
+                            if dist < min_distance:
+                                min_distance = dist
+                                nearest_point = (px, py)
+
+        return nearest_point if nearest_point else (x, y)

@@ -1,6 +1,8 @@
 import tkinter as tk
 import random
+import math
 
+from village import Village
 from parameters import GameParameters
 from board import CatanBoard
 from dice import DiceRoll
@@ -16,6 +18,8 @@ class CatanGame:
         self.dice_roll_button = tk.Button(root, text="Roll Dice", command=self.roll_dice)
         self.dice_roll_button.pack(pady=2)
         self.board.bind("<Button-1>", self.board.start_drag)
+        self.village_button = tk.Button(root, text="Place Village", command=self.board.start_village_placement)
+        self.village_button.pack(pady=2)
 
     def roll_dice(self):
         dice_roll = DiceRoll(random.randint(1, 6), random.randint(1, 6))
@@ -27,6 +31,7 @@ class CatanGame:
         r = random.randint(-max_r, max_r)
         self.board.draw_bandit(q, r)
 
+    
 
 
         
