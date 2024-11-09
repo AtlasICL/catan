@@ -43,7 +43,8 @@ Below is an example of the interface:
     - [ ] display type of port
 - [ ] implement roads
 - [ ] implement settlements
-    - [ ] villages
+    - [x] villages
+    - [ ] settlements belong to a player
     - [ ] upgrading to cities
   
 ### Player elements
