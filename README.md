@@ -11,6 +11,9 @@ This project is written in python. The module tkinter was used for the interface
 ## Build
 
 To build, simply run `main.py` in the `src` folder.
+```
+python .\src\main.py
+```
 
 ---
 
